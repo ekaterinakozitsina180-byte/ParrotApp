@@ -65,8 +65,9 @@ class ParrotApp(App):
                     super(SpeechListener, self).__init__()
                     self.app = app_instance
                     
-                @java_method('([Ljava/lang/String;)v')
+                @java_method('(Landroid/os/Bundle;)v')
                 def onResults(self, results):
+                    # Достаем список распознанных слов из Bundle
                     matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                     if matches and matches.size() > 0:
                         text = matches.get(0)
